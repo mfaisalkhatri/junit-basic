@@ -19,6 +19,23 @@ public class LoginTest {
 
     private static RemoteWebDriver driver;
 
+    public static ChromeOptions getChromeOptions () {
+        final ChromeOptions browserOptions = new ChromeOptions ();
+        browserOptions.setPlatformName ("Windows 10");
+        browserOptions.setBrowserVersion ("130.0");
+        final HashMap<String, Object> ltOptions = new HashMap<String, Object> ();
+        ltOptions.put ("project", "LambdaTest E-Commerce Playground");
+        ltOptions.put ("build", "LambdaTest E-Commerce Login page");
+        ltOptions.put ("name", "Unit Test for Login Page");
+        ltOptions.put ("selenium_version", "4.0.0");
+        ltOptions.put ("w3c", true);
+        ltOptions.put ("plugin", "java-junit");
+
+        browserOptions.setCapability ("LT:Options", ltOptions);
+
+        return browserOptions;
+    }
+
     @BeforeAll
     public static void setup () {
         final String userName = System.getenv ("LT_USERNAME") == null ? "LT_USERNAME" : System.getenv ("LT_USERNAME");
@@ -37,45 +54,27 @@ public class LoginTest {
             .pageLoadTimeout (Duration.ofSeconds (10));
     }
 
-    @Test
-    public void testLoginFunction () {
-        driver.get ("https://ecommerce-playground.lambdatest.io/index.php?route=account/login");
-
-        WebElement emailAddressField = driver.findElement (By.id ("input-email"));
-        emailAddressField.sendKeys ("davidjacob@demo.com");
-
-        WebElement passwordField = driver.findElement (By.id ("input-password"));
-        passwordField.sendKeys ("Password123");
-
-        WebElement loginBtn = driver.findElement (By.cssSelector ("input.btn"));
-        loginBtn.click ();
-
-        String myAccountHeader = driver.findElement (By.cssSelector ("#content h2"))
-            .getText ();
-        assertEquals (myAccountHeader, "My Account");
-
-    }
-
-    public static ChromeOptions getChromeOptions () {
-        final ChromeOptions browserOptions = new ChromeOptions ();
-        browserOptions.setPlatformName ("Windows 10");
-        browserOptions.setBrowserVersion ("130.0");
-        final HashMap<String, Object> ltOptions = new HashMap<String, Object> ();
-        ltOptions.put ("project", "LambdaTest E-Commerce Playground");
-        ltOptions.put ("build", "LambdaTest E-Commerce Login page");
-        ltOptions.put ("name", "Unit Test for Login Page");
-        ltOptions.put ("selenium_version", "4.0.0");
-        ltOptions.put ("w3c", true);
-        ltOptions.put ("plugin", "java-junit");
-
-        browserOptions.setCapability ("LT:Options", ltOptions);
-
-        return browserOptions;
-    }
-
     @AfterAll
     public static void tearDown () {
         driver.quit ();
     }
 
+    @Test
+    public void testLoginFunction () {
+        driver.get ("https://ecommerce-playground.lambdatest.io/index.php?route=account/login");
+
+        final WebElement emailAddressField = driver.findElement (By.id ("input-email"));
+        emailAddressField.sendKeys ("davidjacob@demo.com");
+
+        final WebElement passwordField = driver.findElement (By.id ("input-password"));
+        passwordField.sendKeys ("Password123");
+
+        final WebElement loginBtn = driver.findElement (By.cssSelector ("input.btn"));
+        loginBtn.click ();
+
+        final String myAccountHeader = driver.findElement (By.cssSelector ("#content h2"))
+            .getText ();
+        assertEquals (myAccountHeader, "My Account");
+
+    }
 }
