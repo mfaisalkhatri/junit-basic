@@ -1,5 +1,3 @@
-![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
-
 ## Don't forget to give a :star: to make the project popular.
 
 ## :question: What is this Repository about?
@@ -10,6 +8,7 @@
 
 - [How To Use JUnit Ignore Test Annotation [With Examples]](https://www.lambdatest.com/blog/junit-ignore-test-annotation/)
 - [JUnit Tutorial: Writing Nested Tests In JUnit 5](https://www.lambdatest.com/learning-hub/junit5-nested-tests)
+- [Beginner’s Guide to JUnit 5](https://medium.com/@iamfaisalkhatri/beginners-guide-to-junit-5-7756286cd4be)
 
 🧬 Need Assistance?
 
